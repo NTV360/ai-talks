@@ -1,0 +1,498 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Share My AI Setup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Host+Grotesk:wght@300..800&display=swap">
+<style>
+/* Layout: hard-edged, logo-derived. Type-led hero with an exploded 3D "N" built from the logo's own shapes; ruled rows instead of cards; one solid-orange band for the call to present. */
+:root{
+  color-scheme: dark;
+  --ink:#0D0B0B;
+  --panel:#171413;
+  --line:rgba(255,240,230,.11);
+  --line-2:rgba(255,240,230,.22);
+  --fg:#F3EDE8;
+  --muted:#9C928B;
+  --orange:#FF8A00;
+  --red:#EC1C24;
+  --plum:#9A0B5C;
+  --on-orange:#160A02;
+  --f-display:"Funnel Display","Host Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Host Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1200px;
+  --stem:linear-gradient(180deg,#C70A3C 0%,#EC1C24 22%,#F4440F 52%,#FF8A00 82%);
+  --slash:linear-gradient(162deg,#FF8A00 0%,#FF8A00 24%,#EC1C24 55%,#9A0B5C 100%);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{background:var(--ink);color:var(--fg);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+::selection{background:var(--orange);color:var(--on-orange)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;font-weight:500}
+p{margin:0}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){.wrap{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--ink);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:68px}
+.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none;font-size:.95rem;color:var(--muted)}
+.brand img{height:32px;width:auto;display:block}
+.nav{display:flex;align-items:center;gap:2rem;font-size:.95rem}
+.nav a{text-decoration:none;color:var(--muted);transition:color .15s}
+.nav a:hover{color:var(--fg)}
+.nav .when{color:var(--fg);font-weight:500;white-space:nowrap}
+@media (max-width:860px){.nav .hide-sm,.brand .team{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.65rem;font:600 1rem/1 var(--f-body);padding:1rem 1.35rem;border:0;border-radius:2px;cursor:pointer;text-decoration:none;transition:background .15s,color .15s}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-orange{background:var(--orange);color:var(--on-orange)}
+.btn-orange:hover{background:#FF9E2E}
+.btn-dark{background:var(--on-orange);color:#FFE9D2}
+.btn-dark:hover{background:#2A1405}
+.link-arrow{display:inline-flex;align-items:center;gap:.5rem;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* 1 · hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:2rem;padding-block:clamp(3.5rem,8vw,6.5rem) clamp(3rem,6vw,5rem);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:2rem;min-width:0;position:relative;z-index:2}
+.kicker{font-size:.95rem;color:var(--muted)}
+.kicker b{color:var(--fg);font-weight:500}
+.hero h1{font-size:clamp(3.4rem,9.2vw,8rem);line-height:.9;letter-spacing:-.045em;font-weight:500}
+.hero h1 .o{color:var(--orange)}
+.hero .sub{font-family:var(--f-display);font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.25;letter-spacing:-.015em;color:var(--muted);max-width:30ch;font-weight:400}
+.hero .sub b{color:var(--fg);font-weight:500}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:640px}
+.facts div{padding:1rem 1.25rem 1rem 0;min-width:0}
+.facts div + div{padding-left:1.25rem;border-left:1px solid var(--line)}
+.facts small{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.15rem}
+.facts b{font-weight:500;font-size:1.02rem}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.75rem}
+@media (max-width:560px){.facts{grid-template-columns:1fr}.facts div + div{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+
+/* pixel desk */
+.stage{position:relative;aspect-ratio:60/54;width:100%;max-width:520px;justify-self:end;min-width:0}
+.stage .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tag{position:absolute;font-size:.8rem;line-height:1;color:var(--fg);background:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2);padding:.4rem .55rem;white-space:nowrap}
+.tag.t1{left:60%;top:2%}
+.tag.t2{left:0;top:33%}
+.tag.t3{right:0;top:38%}
+.scene .cur{animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.scene .d1,.scene .d2,.scene .d3{animation:typing 1.4s infinite}
+.scene .d2{animation-delay:.2s}.scene .d3{animation-delay:.4s}
+@keyframes typing{0%,60%,100%{opacity:.2}30%{opacity:1}}
+.scene .st{animation:steam 2.6s infinite linear;opacity:0}
+.scene .s2{animation-delay:.8s}.scene .s3{animation-delay:1.6s}
+@keyframes steam{0%{opacity:0;transform:translateY(2px)}30%{opacity:.8}100%{opacity:0;transform:translateY(-4px)}}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr}
+  .stage{max-width:380px;justify-self:start;order:-1;margin-bottom:-.5rem}
+}
+
+/* section shell */
+.sec{padding-block:clamp(4.5rem,10vw,8rem);border-bottom:1px solid var(--line)}
+.label{font-size:.95rem;color:var(--muted);display:flex;align-items:center;gap:.75rem}
+.label::before{content:"";width:14px;height:14px;background:var(--orange);clip-path:polygon(0 0,45% 0,100% 100%,55% 100%)}
+.sec h2{font-size:clamp(2.4rem,5.4vw,4.4rem);line-height:.98;letter-spacing:-.035em}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.5rem 4rem;align-items:end;margin-bottom:clamp(2.5rem,6vw,4.5rem)}
+.head > div{display:flex;flex-direction:column;gap:1.25rem;min-width:0}
+.head > p{color:var(--muted);max-width:44ch;font-size:1.1rem}
+@media (max-width:860px){.head{grid-template-columns:1fr}}
+
+/* 2 · program */
+.parts{border-top:1px solid var(--line-2)}
+.part{display:grid;grid-template-columns:7rem minmax(0,1fr) minmax(0,1fr);gap:1.5rem 3rem;padding-block:2.5rem;border-bottom:1px solid var(--line)}
+.part .glyph{width:84px;height:84px}
+.ic{width:100%;height:100%;display:block;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic .a{stroke:var(--fg)}.ic .b{stroke:var(--orange)}.ic .c{stroke:var(--muted)}
+.part h3{font-size:clamp(1.8rem,3.2vw,2.6rem);line-height:1.02;letter-spacing:-.03em}
+.part .k{display:block;font-size:.9rem;color:var(--orange);margin-bottom:.6rem;font-weight:500}
+.part p{color:var(--muted);max-width:46ch}
+.part ul{list-style:none;margin:1.25rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;font-size:.95rem}
+.part li::before{content:"/ ";color:var(--orange)}
+@media (max-width:860px){.part{grid-template-columns:1fr}}
+
+/* 3 · lineup */
+.people{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.25rem}
+@media (max-width:1000px){.people{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){.people{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.group{display:flex;align-items:baseline;gap:.9rem;font-family:var(--f-display);font-size:1.35rem;letter-spacing:-.01em;padding-top:1rem;border-top:1px solid var(--line-2);margin-bottom:1.5rem}
+.group span{font-family:var(--f-body);font-size:.9rem;color:var(--orange);font-weight:500;letter-spacing:0}
+.group + .people{margin-bottom:0}
+.people + .group{margin-top:clamp(3rem,6vw,4.5rem)}
+.host{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,4fr);gap:1.25rem 3rem;align-items:end}
+.host-copy{display:flex;flex-direction:column;gap:1rem;max-width:52ch;padding-bottom:.25rem}
+.host-copy h3{font-size:clamp(2rem,3.6vw,3rem);line-height:1;letter-spacing:-.03em}
+.host-copy h3 span{color:var(--muted);font-weight:400}
+.host-copy p{color:var(--muted)}
+.host-copy ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;font-size:.95rem}
+.host-copy li::before{content:"/ ";color:var(--orange)}
+.extra{display:flex;flex-direction:column;gap:.35rem;border-top:1px solid var(--line);padding-top:1rem;margin-top:.25rem}
+.extra b{font-weight:600;color:var(--fg)}
+.extra b::before{content:"+ ";color:var(--orange)}
+@media (max-width:1000px){.host{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}}
+@media (max-width:620px){.host{grid-template-columns:minmax(0,1fr)}.host .person{max-width:220px}}
+.person{display:flex;flex-direction:column;gap:.9rem;min-width:0;text-decoration:none}
+.photo{position:relative;aspect-ratio:4/5;max-width:100%;background:var(--panel);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo svg.px{position:absolute;inset:0;width:100%;height:100%;display:block}
+.px .fig{transition:transform .25s steps(2)}
+.person:hover .px .fig{transform:translateY(-1px)}
+.px .eye{animation:eye 5s infinite}
+.person:nth-child(2) .px .eye{animation-delay:1.7s}
+.person:nth-child(3) .px .eye{animation-delay:3.1s}
+.host .px .eye{animation-delay:2.4s}
+@keyframes eye{0%,93%,100%{opacity:1}95%,98%{opacity:0}}
+.person h3{font-family:var(--f-body);font-size:1.1rem;font-weight:600}
+.person p{color:var(--muted);font-size:.95rem}
+.person.open .photo > b,.person.open .photo > span:not(.plus){position:relative;z-index:1}
+.person.open .photo{background:transparent;box-shadow:inset 0 0 0 1px var(--line-2);display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem;gap:.5rem;transition:box-shadow .15s}
+.person.open:hover .photo{box-shadow:inset 0 0 0 1px var(--orange)}
+.person.open .photo b{font-family:var(--f-display);font-weight:500;font-size:1.6rem;line-height:1;letter-spacing:-.02em}
+.person.open .photo span{color:var(--muted);font-size:.95rem}
+.plus{position:absolute;top:1.25rem;right:1.25rem;width:28px;height:28px}
+.plus::before,.plus::after{content:"";position:absolute;background:var(--orange);left:50%;top:50%;transform:translate(-50%,-50%)}
+.plus::before{width:100%;height:3px}
+.plus::after{width:3px;height:100%}
+
+/* 4 · schedule */
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
+.row{display:grid;grid-template-columns:7rem minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr);gap:.5rem 2rem;align-items:center;padding-block:1.4rem;border-bottom:1px solid var(--line)}
+.row time{font-variant-numeric:tabular-nums;font-weight:500;font-size:1.05rem}
+.row h3{font-size:1.35rem;letter-spacing:-.015em;line-height:1.15}
+.row p{color:var(--muted);font-size:.97rem}
+.dur{display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dur .track{flex:1;height:8px;background:var(--panel);position:relative;min-width:60px}
+.dur .fill{position:absolute;top:0;bottom:0;left:calc(var(--s)*100%/120);width:calc(var(--d)*100%/120);background:var(--muted)}
+.row.main .fill{background:var(--orange)}
+@media (max-width:860px){.row{grid-template-columns:5rem minmax(0,1fr)}.row p,.row .dur{grid-column:2}}
+
+/* 5 · present CTA */
+.share{background:var(--orange);color:var(--on-orange);position:relative;overflow:hidden}
+.share .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem 5rem;padding-block:clamp(4.5rem,10vw,7.5rem);position:relative;z-index:1}
+.share .wrap > div{min-width:0}
+.share h2{font-size:clamp(2.6rem,6vw,5rem);line-height:.95;letter-spacing:-.04em}
+.share .intro{font-size:1.2rem;line-height:1.5;max-width:40ch;margin-top:1.5rem}
+.share .intro b{font-weight:700}
+.deadline{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem;margin-top:2rem;padding:1rem 1.25rem;background:var(--on-orange);color:#FFE9D2;max-width:100%}
+.deadline span{font-size:.85rem;opacity:.7}
+.deadline b{font-family:var(--f-display);font-size:1.5rem;font-weight:500;letter-spacing:-.01em;line-height:1.1}
+.deadline em{font-style:normal;font-size:.9rem;color:var(--orange);font-weight:600}
+.steps{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--on-orange);counter-reset:s}
+.steps li{display:grid;grid-template-columns:2.5rem minmax(0,1fr);gap:1rem;padding-block:1.25rem;border-bottom:1px solid rgba(22,10,2,.25);counter-increment:s}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-size:1.6rem;line-height:1;font-weight:600}
+.steps h3{font-family:var(--f-body);font-size:1.1rem;font-weight:600;margin-bottom:.15rem}
+.steps p{font-size:.98rem;opacity:.82}
+.share .actions{margin-top:2rem}
+.toast{font-size:.92rem;min-height:1.4em;margin-top:.75rem;font-weight:500;white-space:pre-line}
+.share .ghost{position:absolute;right:-6%;bottom:-18%;width:46%;max-width:560px;aspect-ratio:1/1;background:rgba(22,10,2,.07);clip-path:polygon(0 0,40% 0,100% 100%,60% 100%);pointer-events:none}
+@media (max-width:860px){.share .wrap{grid-template-columns:1fr}}
+
+/* footer */
+footer{padding-block:4rem 2.5rem}
+.foot{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,.8fr);gap:2.5rem}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+.foot .brandblock{display:flex;flex-direction:column;gap:1.25rem}
+.foot img{height:64px;width:auto;align-self:flex-start}
+.foot p{color:var(--muted);max-width:36ch}
+.foot h4{margin:0 0 .9rem;font-size:.9rem;font-weight:500;color:var(--muted)}
+.foot dl{margin:0;display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:.45rem 1rem}
+.foot dt{color:var(--muted)}
+.foot dd{margin:0}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem}
+.foot ul a{text-decoration:none}
+.foot ul a:hover{color:var(--orange)}
+.base{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.88rem;color:var(--muted)}
+.base a{text-decoration:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="NTV360, back to top">
+      <img src="data:image/webp;base64,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" alt="NTV360">
+      <span class="team">Development Team PH</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a class="hide-sm" href="#program">Program</a>
+      <a class="hide-sm" href="#lineup">Lineup</a>
+      <a class="hide-sm" href="#schedule">Schedule</a>
+      <a class="hide-sm" href="#present">Present</a>
+      <span class="when">Fri, Oct 30</span>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- 1 · HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="kicker"><b>NTV360 Development Team PH</b> invites you to an in-person session</p>
+        <h1>Share My <span class="o">AI</span> Setup</h1>
+        <p class="sub">Seniors <b>James, Leigh and Mikoo</b> show their setups. Then <b>Fratz and the R&amp;D team</b> share AI tips, tricks and tools.</p>
+        <div class="facts">
+          <div><small>Date</small><b>Friday, Oct 30</b></div>
+          <div><small>Time</small><b>3:00 – 5:00 PM</b></div>
+          <div><small>Venue</small><b>NTV360 Office</b></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-orange gcal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/">Add to Google Calendar
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
+          <a class="link-arrow" href="#present">Want to present? 2 slots left
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <svg class="px scene" viewBox="0 0 60 54" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="9" width="7.05" height="7.05" fill="#FF8A00"/><rect x="5" y="15" width="7.05" height="1.05" fill="#D96F00"/><rect x="6" y="11" width="5.05" height="1.05" fill="#7A3B00"/><rect x="6" y="13" width="3.05" height="1.05" fill="#7A3B00"/><rect x="13" y="9" width="32.05" height="25.05" fill="#2A2523"/><rect x="15" y="11" width="28.05" height="21.05" fill="#120F0F"/><rect x="27" y="34" width="4.05" height="4.05" fill="#2A2523"/><rect x="22" y="38" width="14.05" height="2.05" fill="#3A3330"/><rect x="17" y="13" width="2.05" height="1.05" fill="#FF8A00"/><rect x="20" y="13" width="5.05" height="1.05" fill="#CFC6BF"/><rect x="19" y="15" width="3.05" height="1.05" fill="#6F655F"/><rect x="23" y="15" width="4.05" height="1.05" fill="#EC1C24"/><rect x="19" y="17" width="6.05" height="1.05" fill="#CFC6BF"/><rect x="26" y="17" width="2.05" height="1.05" fill="#FF8A00"/><rect x="21" y="19" width="4.05" height="1.05" fill="#C2337E"/><rect x="26" y="19" width="3.05" height="1.05" fill="#6F655F"/><rect x="21" y="21" width="7.05" height="1.05" fill="#CFC6BF"/><rect x="19" y="23" width="2.05" height="1.05" fill="#FF8A00"/><rect x="22" y="23" width="4.05" height="1.05" fill="#6F655F"/><rect x="17" y="25" width="3.05" height="1.05" fill="#EC1C24"/><rect x="21" y="25" width="6.05" height="1.05" fill="#CFC6BF"/><rect x="17" y="27" width="2.05" height="1.05" fill="#6F655F"/><rect class="cur" x="20" y="27" width="1.05" height="1.05" fill="#FF8A00"/><rect x="31" y="11" width="1.05" height="21.05" fill="#2A2523"/><rect x="35" y="13" width="7.05" height="2.05" fill="#3A3330"/><rect x="33" y="16" width="1.05" height="1.05" fill="#FF8A00"/><rect x="32" y="17" width="3.05" height="1.05" fill="#FF8A00"/><rect x="33" y="18" width="1.05" height="1.05" fill="#FF8A00"/><rect x="35" y="17" width="7.05" height="5.05" fill="#3A1E10"/><rect x="36" y="18" width="5.05" height="1.05" fill="#FF8A00"/><rect x="36" y="20" width="4.05" height="1.05" fill="#FFC37A"/><rect x="37" y="23" width="5.05" height="2.05" fill="#3A3330"/><rect x="33" y="27" width="1.05" height="1.05" fill="#FF8A00"/><rect x="32" y="28" width="3.05" height="1.05" fill="#FF8A00"/><rect x="33" y="29" width="1.05" height="1.05" fill="#FF8A00"/><rect class="d1" x="36" y="28" width="1.05" height="1.05" fill="#F3EDE8"/><rect class="d2" x="38" y="28" width="1.05" height="1.05" fill="#F3EDE8"/><rect class="d3" x="40" y="28" width="1.05" height="1.05" fill="#F3EDE8"/><rect x="4" y="34" width="7.05" height="6.05" fill="#EC1C24"/><rect x="4" y="34" width="7.05" height="1.05" fill="#B5121A"/><rect x="5" y="36" width="5.05" height="1.05" fill="#C9141C"/><rect x="7" y="25" width="1.05" height="9.05" fill="#5E8A55"/><rect x="5" y="27" width="2.05" height="1.05" fill="#5E8A55"/><rect x="4" y="26" width="2.05" height="1.05" fill="#5E8A55"/><rect x="8" y="28" width="2.05" height="1.05" fill="#5E8A55"/><rect x="9" y="27" width="2.05" height="1.05" fill="#5E8A55"/><rect x="5" y="30" width="2.05" height="1.05" fill="#5E8A55"/><rect x="4" y="29" width="1.05" height="2.05" fill="#5E8A55"/><rect x="8" y="31" width="3.05" height="1.05" fill="#5E8A55"/><rect x="10" y="30" width="1.05" height="1.05" fill="#5E8A55"/><rect x="6" y="32" width="1.05" height="2.05" fill="#5E8A55"/><rect x="9" y="24" width="1.05" height="2.05" fill="#5E8A55"/><rect x="6" y="23" width="1.05" height="3.05" fill="#5E8A55"/><rect x="7" y="25" width="1.05" height="9.05" fill="#4A7044"/><rect x="48" y="34" width="5.05" height="6.05" fill="#F3EDE8"/><rect x="48" y="36" width="5.05" height="1.05" fill="#FF8A00"/><rect x="53" y="35" width="2.05" height="1.05" fill="#F3EDE8"/><rect x="54" y="36" width="1.05" height="1.05" fill="#F3EDE8"/><rect x="53" y="37" width="2.05" height="1.05" fill="#F3EDE8"/><rect class="st s1" x="49" y="30" width="1.05" height="2.05" fill="#9C928B"/><rect class="st s2" x="51" y="28" width="1.05" height="3.05" fill="#9C928B"/><rect class="st s3" x="50" y="26" width="1.05" height="2.05" fill="#9C928B"/><rect x="1" y="40" width="58.05" height="3.05" fill="#3D2F2A"/><rect x="1" y="40" width="58.05" height="1.05" fill="#4A3A33"/><rect x="1" y="43" width="58.05" height="2.05" fill="#241B18"/><rect x="5" y="45" width="3.05" height="9.05" fill="#241B18"/><rect x="52" y="45" width="3.05" height="9.05" fill="#241B18"/><rect x="16" y="40" width="22.05" height="2.05" fill="#2A2523"/><rect x="17" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="19" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="21" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="23" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="25" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="27" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="29" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="31" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="33" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="35" y="40" width="1.05" height="1.05" fill="#5A504B"/><rect x="41" y="40" width="3.05" height="2.05" fill="#2A2523"/><rect x="42" y="40" width="1.05" height="1.05" fill="#5A504B"/></svg>
+        <span class="tag t1">editor + AI chat</span>
+        <span class="tag t2">prompt notes</span>
+        <span class="tag t3">coffee</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · PROGRAM -->
+  <section class="sec" id="program">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="label">The program</span>
+          <h2>Two parts, two hours, real screens.</h2>
+        </div>
+        <p>Our seniors open their laptops and show how they actually work with AI. You see the tools, the settings, and the habits behind them, then ask anything.</p>
+      </div>
+
+      <div class="parts">
+        <article class="part">
+          <div class="glyph"><svg class="ic" viewBox="0 0 80 80" aria-hidden="true">
+              <rect class="a" x="6" y="12" width="54" height="36" rx="2"/>
+              <path class="a" d="M33 48v8M22 56h22"/>
+              <path class="c" d="M13 21h10M13 28h18M17 35h12M13 42h7"/>
+              <path class="c" d="M40 18v24"/>
+              <path class="b" d="M44 22h10M44 28h7"/>
+              <path class="b" d="M66 4c0 6 2 8 8 9-6 1-8 3-8 9 0-6-2-8-8-9 6-1 8-3 8-9z"/>
+              <rect class="a" x="10" y="62" width="44" height="12" rx="2"/>
+              <path class="c" d="M17 68h0M23 68h0M29 68h0M35 68h0M41 68h0M47 68h0"/>
+              <rect class="a" x="61" y="61" width="10" height="14" rx="5"/>
+              <path class="a" d="M66 61v5"/>
+            </svg></div>
+          <div>
+            <span class="k">Part 1 · with James, Leigh, Mikoo and two more</span>
+            <h3>Share My AI Setup</h3>
+          </div>
+          <div>
+            <p>Each presenter walks through the setup they rely on, then takes one real task from start to finish so you can see how the pieces fit together.</p>
+            <ul><li>Editors and assistants</li><li>Which models and why</li><li>Rules and prompt files</li><li>Agents and automations</li></ul>
+          </div>
+        </article>
+        <article class="part">
+          <div class="glyph"><svg class="ic" viewBox="0 0 80 80" aria-hidden="true">
+              <path class="a" d="M40 14a19 19 0 0 0-11 34c3 2.5 4 5 4 8v3h14v-3c0-3 1-5.5 4-8a19 19 0 0 0-11-34z"/>
+              <path class="a" d="M34 65h12M36 71h8"/>
+              <path class="b" d="M34 46l3-9 3 6 3-6 3 9"/>
+              <path class="b" d="M40 3v5M18 11l4 4M62 11l-4 4M9 33h5M66 33h5"/>
+              <path class="c" d="M66 52c0 4 1.5 5.5 5.5 6-4 .5-5.5 2-5.5 6 0-4-1.5-5.5-5.5-6 4-.5 5.5-2 5.5-6z"/>
+            </svg></div>
+          <div>
+            <span class="k">Part 2 · with Fratz and the R&amp;D team</span>
+            <h3>AI Tips &amp; Tricks</h3>
+          </div>
+          <div>
+            <p>Fratz and the R&amp;D team share the habits and tools they rely on: how they write prompts, debug with AI, review AI-written code, and which tools are worth adding to your setup.</p>
+            <ul><li>Prompting</li><li>Debugging</li><li>Code review</li><li>Tools worth trying</li><li>Generating ad content</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · LINEUP -->
+  <section class="sec" id="lineup">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="label">The lineup</span>
+          <h2>Who's presenting</h2>
+        </div>
+        <p>James, Leigh and Mikoo share their setups, with two slots left for anyone who wants to join them. Fratz and the R&amp;D team run the tips, tricks and tools.</p>
+      </div>
+      <p class="group"><span>Part 1</span>Share My AI Setup</p>
+      <div class="people">
+        <div class="person">
+          <div class="photo"><svg class="px" viewBox="0 0 20 25" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="3" width="1" height="1" fill="#FF8A00" opacity=".7"/><rect x="17" y="6" width="1" height="1" fill="#FF8A00" opacity=".7"/><rect x="3" y="12" width="1" height="1" fill="#FF8A00" opacity=".7"/><g class="fig"><rect x="6" y="2" width="8.05" height="1.05" fill="#3A3330"/><rect x="5" y="3" width="1.05" height="1.05" fill="#3A3330"/><rect x="7" y="3" width="6.05" height="1.05" fill="#2A1B14"/><rect x="14" y="3" width="1.05" height="1.05" fill="#3A3330"/><rect x="5" y="4" width="1.05" height="1.05" fill="#3A3330"/><rect x="6" y="4" width="8.05" height="1.05" fill="#2A1B14"/><rect x="14" y="4" width="1.05" height="1.05" fill="#3A3330"/><rect x="5" y="5" width="1.05" height="1.05" fill="#3A3330"/><rect x="6" y="5" width="8.05" height="1.05" fill="#2A1B14"/><rect x="14" y="5" width="1.05" height="1.05" fill="#3A3330"/><rect x="5" y="6" width="1.05" height="1.05" fill="#3A3330"/><rect x="6" y="6" width="1.05" height="1.05" fill="#2A1B14"/><rect x="7" y="6" width="6.05" height="1.05" fill="#E3A97E"/><rect x="13" y="6" width="1.05" height="1.05" fill="#2A1B14"/><rect x="14" y="6" width="1.05" height="1.05" fill="#3A3330"/><rect x="4" y="7" width="2.05" height="1.05" fill="#FF8A00"/><rect x="6" y="7" width="8.05" height="1.05" fill="#E3A97E"/><rect x="14" y="7" width="2.05" height="1.05" fill="#FF8A00"/><rect x="4" y="8" width="2.05" height="1.05" fill="#FF8A00"/><rect x="6" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect x="7" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="8" width="4.05" height="1.05" fill="#E3A97E"/><rect x="12" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="12" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="13" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect x="14" y="8" width="2.05" height="1.05" fill="#FF8A00"/><rect x="4" y="9" width="2.05" height="1.05" fill="#FF8A00"/><rect x="6" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect x="7" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="9" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="9" width="4.05" height="1.05" fill="#E3A97E"/><rect x="12" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="12" y="9" width="1.05" height="1.05" fill="#160A02"/><rect x="13" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect x="14" y="9" width="2.05" height="1.05" fill="#FF8A00"/><rect x="4" y="10" width="2.05" height="1.05" fill="#FF8A00"/><rect x="6" y="10" width="8.05" height="1.05" fill="#E3A97E"/><rect x="14" y="10" width="2.05" height="1.05" fill="#FF8A00"/><rect x="6" y="11" width="3.05" height="1.05" fill="#E3A97E"/><rect x="9" y="11" width="2.05" height="1.05" fill="#8A3A2A"/><rect x="11" y="11" width="3.05" height="1.05" fill="#E3A97E"/><rect x="6" y="12" width="8.05" height="1.05" fill="#E3A97E"/><rect x="7" y="13" width="6.05" height="1.05" fill="#E3A97E"/><rect x="8" y="14" width="4.05" height="1.05" fill="#E3A97E"/><rect x="8" y="15" width="4.05" height="1.05" fill="#C98A60"/><rect x="3" y="16" width="5.05" height="1.05" fill="#FF8A00"/><rect x="8" y="16" width="1.05" height="1.05" fill="#D96F00"/><rect x="9" y="16" width="2.05" height="1.05" fill="#E3A97E"/><rect x="11" y="16" width="1.05" height="1.05" fill="#D96F00"/><rect x="12" y="16" width="5.05" height="1.05" fill="#FF8A00"/><rect x="2" y="17" width="6.05" height="1.05" fill="#FF8A00"/><rect x="8" y="17" width="4.05" height="1.05" fill="#D96F00"/><rect x="12" y="17" width="6.05" height="1.05" fill="#FF8A00"/><rect x="1" y="18" width="18.05" height="1.05" fill="#FF8A00"/><rect x="1" y="19" width="3.05" height="1.05" fill="#FF8A00"/><rect x="4" y="19" width="1.05" height="1.05" fill="#D96F00"/><rect x="5" y="19" width="10.05" height="1.05" fill="#FF8A00"/><rect x="15" y="19" width="1.05" height="1.05" fill="#D96F00"/><rect x="16" y="19" width="3.05" height="1.05" fill="#FF8A00"/><rect x="1" y="20" width="3.05" height="1.05" fill="#FF8A00"/><rect x="4" y="20" width="1.05" height="1.05" fill="#D96F00"/><rect x="5" y="20" width="10.05" height="1.05" fill="#FF8A00"/><rect x="15" y="20" width="1.05" height="1.05" fill="#D96F00"/><rect x="16" y="20" width="3.05" height="1.05" fill="#FF8A00"/><rect x="1" y="21" width="3.05" height="1.05" fill="#FF8A00"/><rect x="4" y="21" width="12.05" height="1.05" fill="#3A3330"/><rect x="16" y="21" width="3.05" height="1.05" fill="#FF8A00"/><rect x="1" y="22" width="3.05" height="1.05" fill="#FF8A00"/><rect x="4" y="22" width="5.05" height="1.05" fill="#3A3330"/><rect x="9" y="22" width="2.05" height="1.05" fill="#FF8A00"/><rect x="11" y="22" width="5.05" height="1.05" fill="#3A3330"/><rect x="16" y="22" width="3.05" height="1.05" fill="#FF8A00"/><rect x="1" y="23" width="3.05" height="1.05" fill="#FF8A00"/><rect x="4" y="23" width="5.05" height="1.05" fill="#3A3330"/><rect x="9" y="23" width="2.05" height="1.05" fill="#FF8A00"/><rect x="11" y="23" width="5.05" height="1.05" fill="#3A3330"/><rect x="16" y="23" width="3.05" height="1.05" fill="#FF8A00"/><rect x="1" y="24" width="3.05" height="1.05" fill="#FF8A00"/><rect x="4" y="24" width="12.05" height="1.05" fill="#5A504B"/><rect x="16" y="24" width="3.05" height="1.05" fill="#FF8A00"/></g></svg></div>
+          <div><h3>James</h3><p>Senior, NTV360</p></div>
+        </div>
+        <div class="person">
+          <div class="photo"><svg class="px" viewBox="0 0 20 25" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><rect x="16" y="2" width="1" height="1" fill="#EC1C24" opacity=".7"/><rect x="2" y="8" width="1" height="1" fill="#EC1C24" opacity=".7"/><rect x="18" y="13" width="1" height="1" fill="#EC1C24" opacity=".7"/><g class="fig"><rect x="6" y="1" width="1.05" height="1.05" fill="#2A1B14"/><rect x="9" y="1" width="1.05" height="1.05" fill="#2A1B14"/><rect x="12" y="1" width="1.05" height="1.05" fill="#2A1B14"/><rect x="5" y="2" width="10.05" height="1.05" fill="#2A1B14"/><rect x="4" y="3" width="12.05" height="1.05" fill="#2A1B14"/><rect x="4" y="4" width="12.05" height="1.05" fill="#2A1B14"/><rect x="4" y="5" width="2.05" height="1.05" fill="#2A1B14"/><rect x="6" y="5" width="8.05" height="1.05" fill="#E3A97E"/><rect x="14" y="5" width="2.05" height="1.05" fill="#2A1B14"/><rect x="4" y="6" width="1.05" height="1.05" fill="#2A1B14"/><rect x="5" y="6" width="10.05" height="1.05" fill="#E3A97E"/><rect x="15" y="6" width="1.05" height="1.05" fill="#2A1B14"/><rect x="5" y="7" width="1.05" height="1.05" fill="#E3A97E"/><rect x="6" y="7" width="8.05" height="1.05" fill="#160A02"/><rect x="14" y="7" width="1.05" height="1.05" fill="#E3A97E"/><rect x="5" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect x="6" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="7" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="8" width="1.05" height="1.05" fill="#F3EDE8"/><rect x="9" y="8" width="2.05" height="1.05" fill="#160A02"/><rect x="11" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="11" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="12" y="8" width="1.05" height="1.05" fill="#F3EDE8"/><rect x="13" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="14" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect x="5" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect x="6" y="9" width="3.05" height="1.05" fill="#160A02"/><rect x="9" y="9" width="2.05" height="1.05" fill="#E3A97E"/><rect x="11" y="9" width="3.05" height="1.05" fill="#160A02"/><rect x="14" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect x="6" y="10" width="8.05" height="1.05" fill="#E3A97E"/><rect x="6" y="11" width="1.05" height="1.05" fill="#2A1B14"/><rect x="7" y="11" width="6.05" height="1.05" fill="#E3A97E"/><rect x="13" y="11" width="1.05" height="1.05" fill="#2A1B14"/><rect x="6" y="12" width="2.05" height="1.05" fill="#2A1B14"/><rect x="8" y="12" width="1.05" height="1.05" fill="#E3A97E"/><rect x="9" y="12" width="2.05" height="1.05" fill="#8A3A2A"/><rect x="11" y="12" width="1.05" height="1.05" fill="#E3A97E"/><rect x="12" y="12" width="2.05" height="1.05" fill="#2A1B14"/><rect x="6" y="13" width="8.05" height="1.05" fill="#2A1B14"/><rect x="7" y="14" width="6.05" height="1.05" fill="#2A1B14"/><rect x="8" y="15" width="4.05" height="1.05" fill="#C98A60"/><rect x="3" y="16" width="6.05" height="1.05" fill="#EC1C24"/><rect x="9" y="16" width="2.05" height="1.05" fill="#C98A60"/><rect x="11" y="16" width="6.05" height="1.05" fill="#EC1C24"/><rect x="2" y="17" width="7.05" height="1.05" fill="#EC1C24"/><rect x="9" y="17" width="2.05" height="1.05" fill="#F3EDE8"/><rect x="11" y="17" width="7.05" height="1.05" fill="#EC1C24"/><rect x="1" y="18" width="18.05" height="1.05" fill="#EC1C24"/><rect x="1" y="19" width="11.05" height="1.05" fill="#EC1C24"/><rect x="12" y="19" width="3.05" height="1.05" fill="#B5121A"/><rect x="15" y="19" width="4.05" height="1.05" fill="#EC1C24"/><rect x="1" y="20" width="2.05" height="1.05" fill="#EC1C24"/><rect x="3" y="20" width="1.05" height="1.05" fill="#B5121A"/><rect x="4" y="20" width="8.05" height="1.05" fill="#EC1C24"/><rect x="12" y="20" width="1.05" height="1.05" fill="#B5121A"/><rect x="13" y="20" width="1.05" height="1.05" fill="#F3EDE8"/><rect x="14" y="20" width="1.05" height="1.05" fill="#B5121A"/><rect x="15" y="20" width="2.05" height="1.05" fill="#EC1C24"/><rect x="17" y="20" width="1.05" height="1.05" fill="#B5121A"/><rect x="18" y="20" width="1.05" height="1.05" fill="#EC1C24"/><rect x="1" y="21" width="2.05" height="1.05" fill="#EC1C24"/><rect x="3" y="21" width="1.05" height="1.05" fill="#B5121A"/><rect x="4" y="21" width="8.05" height="1.05" fill="#EC1C24"/><rect x="12" y="21" width="3.05" height="1.05" fill="#B5121A"/><rect x="15" y="21" width="2.05" height="1.05" fill="#EC1C24"/><rect x="17" y="21" width="1.05" height="1.05" fill="#B5121A"/><rect x="18" y="21" width="1.05" height="1.05" fill="#EC1C24"/><rect x="1" y="22" width="2.05" height="1.05" fill="#EC1C24"/><rect x="3" y="22" width="1.05" height="1.05" fill="#B5121A"/><rect x="4" y="22" width="13.05" height="1.05" fill="#EC1C24"/><rect x="17" y="22" width="1.05" height="1.05" fill="#B5121A"/><rect x="18" y="22" width="1.05" height="1.05" fill="#EC1C24"/><rect x="1" y="23" width="2.05" height="1.05" fill="#EC1C24"/><rect x="3" y="23" width="1.05" height="1.05" fill="#B5121A"/><rect x="4" y="23" width="13.05" height="1.05" fill="#EC1C24"/><rect x="17" y="23" width="1.05" height="1.05" fill="#B5121A"/><rect x="18" y="23" width="1.05" height="1.05" fill="#EC1C24"/><rect x="1" y="24" width="2.05" height="1.05" fill="#EC1C24"/><rect x="3" y="24" width="1.05" height="1.05" fill="#B5121A"/><rect x="4" y="24" width="13.05" height="1.05" fill="#EC1C24"/><rect x="17" y="24" width="1.05" height="1.05" fill="#B5121A"/><rect x="18" y="24" width="1.05" height="1.05" fill="#EC1C24"/></g></svg></div>
+          <div><h3>Leigh</h3><p>Senior, NTV360</p></div>
+        </div>
+        <div class="person">
+          <div class="photo"><svg class="px" viewBox="0 0 20 25" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="4" width="1" height="1" fill="#2E8A99" opacity=".7"/><rect x="16" y="9" width="1" height="1" fill="#2E8A99" opacity=".7"/><rect x="17" y="2" width="1" height="1" fill="#2E8A99" opacity=".7"/><g class="fig"><rect x="7" y="2" width="1.05" height="1.05" fill="#2A1B14"/><rect x="9" y="2" width="1.05" height="1.05" fill="#2A1B14"/><rect x="11" y="2" width="1.05" height="1.05" fill="#2A1B14"/><rect x="13" y="2" width="1.05" height="1.05" fill="#2A1B14"/><rect x="6" y="3" width="8.05" height="1.05" fill="#2A1B14"/><rect x="5" y="4" width="10.05" height="1.05" fill="#2A1B14"/><rect x="5" y="5" width="10.05" height="1.05" fill="#2A1B14"/><rect x="5" y="6" width="3.05" height="1.05" fill="#2A1B14"/><rect x="8" y="6" width="6.05" height="1.05" fill="#E3A97E"/><rect x="14" y="6" width="1.05" height="1.05" fill="#2A1B14"/><rect x="5" y="7" width="10.05" height="1.05" fill="#E3A97E"/><rect x="5" y="8" width="2.05" height="1.05" fill="#E3A97E"/><rect x="7" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="8" width="4.05" height="1.05" fill="#E3A97E"/><rect x="12" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="12" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="13" y="8" width="2.05" height="1.05" fill="#E3A97E"/><rect x="5" y="9" width="2.05" height="1.05" fill="#E3A97E"/><rect x="7" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="9" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="9" width="4.05" height="1.05" fill="#E3A97E"/><rect x="12" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="12" y="9" width="1.05" height="1.05" fill="#160A02"/><rect x="13" y="9" width="2.05" height="1.05" fill="#E3A97E"/><rect x="6" y="10" width="8.05" height="1.05" fill="#E3A97E"/><rect x="6" y="11" width="3.05" height="1.05" fill="#E3A97E"/><rect x="9" y="11" width="2.05" height="1.05" fill="#8A3A2A"/><rect x="11" y="11" width="3.05" height="1.05" fill="#E3A97E"/><rect x="6" y="12" width="8.05" height="1.05" fill="#E3A97E"/><rect x="7" y="13" width="6.05" height="1.05" fill="#E3A97E"/><rect x="8" y="14" width="4.05" height="1.05" fill="#E3A97E"/><rect x="6" y="15" width="8.05" height="1.05" fill="#0F4C5C"/><rect x="4" y="16" width="2.05" height="1.05" fill="#0F4C5C"/><rect x="6" y="16" width="8.05" height="1.05" fill="#0A3642"/><rect x="14" y="16" width="2.05" height="1.05" fill="#0F4C5C"/><rect x="2" y="17" width="16.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="18" width="18.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="19" width="5.05" height="1.05" fill="#0F4C5C"/><rect x="6" y="19" width="1.05" height="1.05" fill="#2E8A99"/><rect x="7" y="19" width="6.05" height="1.05" fill="#0F4C5C"/><rect x="13" y="19" width="1.05" height="1.05" fill="#2E8A99"/><rect x="14" y="19" width="5.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="20" width="5.05" height="1.05" fill="#0F4C5C"/><rect x="6" y="20" width="1.05" height="1.05" fill="#2E8A99"/><rect x="7" y="20" width="6.05" height="1.05" fill="#0F4C5C"/><rect x="13" y="20" width="1.05" height="1.05" fill="#2E8A99"/><rect x="14" y="20" width="5.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="21" width="18.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="22" width="3.05" height="1.05" fill="#0F4C5C"/><rect x="4" y="22" width="12.05" height="1.05" fill="#0A3642"/><rect x="16" y="22" width="3.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="23" width="3.05" height="1.05" fill="#0F4C5C"/><rect x="4" y="23" width="1.05" height="1.05" fill="#0A3642"/><rect x="5" y="23" width="10.05" height="1.05" fill="#0F4C5C"/><rect x="15" y="23" width="1.05" height="1.05" fill="#0A3642"/><rect x="16" y="23" width="3.05" height="1.05" fill="#0F4C5C"/><rect x="1" y="24" width="3.05" height="1.05" fill="#0F4C5C"/><rect x="4" y="24" width="1.05" height="1.05" fill="#0A3642"/><rect x="5" y="24" width="10.05" height="1.05" fill="#0F4C5C"/><rect x="15" y="24" width="1.05" height="1.05" fill="#0A3642"/><rect x="16" y="24" width="3.05" height="1.05" fill="#0F4C5C"/></g></svg></div>
+          <div><h3>Mikoo</h3><p>Senior, NTV360</p></div>
+        </div>
+        <a class="person open" href="#present">
+          <div class="photo"><svg class="px" viewBox="0 0 20 25" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><g class="fig"><rect x="6" y="1" width="1.05" height="1.05" fill="#221D1B"/><rect x="9" y="1" width="1.05" height="1.05" fill="#221D1B"/><rect x="12" y="1" width="1.05" height="1.05" fill="#221D1B"/><rect x="5" y="2" width="10.05" height="1.05" fill="#221D1B"/><rect x="4" y="3" width="12.05" height="1.05" fill="#221D1B"/><rect x="4" y="4" width="12.05" height="1.05" fill="#221D1B"/><rect x="4" y="5" width="12.05" height="1.05" fill="#221D1B"/><rect x="4" y="6" width="5.05" height="1.05" fill="#221D1B"/><rect x="9" y="6" width="2.05" height="1.05" fill="#FF8A00"/><rect x="11" y="6" width="5.05" height="1.05" fill="#221D1B"/><rect x="5" y="7" width="3.05" height="1.05" fill="#221D1B"/><rect x="8" y="7" width="1.05" height="1.05" fill="#FF8A00"/><rect x="9" y="7" width="2.05" height="1.05" fill="#221D1B"/><rect x="11" y="7" width="1.05" height="1.05" fill="#FF8A00"/><rect x="12" y="7" width="3.05" height="1.05" fill="#221D1B"/><rect x="5" y="8" width="6.05" height="1.05" fill="#221D1B"/><rect x="11" y="8" width="1.05" height="1.05" fill="#FF8A00"/><rect x="12" y="8" width="3.05" height="1.05" fill="#221D1B"/><rect x="5" y="9" width="5.05" height="1.05" fill="#221D1B"/><rect x="10" y="9" width="1.05" height="1.05" fill="#FF8A00"/><rect x="11" y="9" width="4.05" height="1.05" fill="#221D1B"/><rect x="6" y="10" width="8.05" height="1.05" fill="#221D1B"/><rect x="6" y="11" width="4.05" height="1.05" fill="#221D1B"/><rect x="10" y="11" width="1.05" height="1.05" fill="#FF8A00"/><rect x="11" y="11" width="3.05" height="1.05" fill="#221D1B"/><rect x="6" y="12" width="8.05" height="1.05" fill="#221D1B"/><rect x="6" y="13" width="8.05" height="1.05" fill="#221D1B"/><rect x="7" y="14" width="6.05" height="1.05" fill="#221D1B"/><rect x="8" y="15" width="4.05" height="1.05" fill="#221D1B"/><rect x="3" y="16" width="14.05" height="1.05" fill="#221D1B"/><rect x="2" y="17" width="16.05" height="1.05" fill="#221D1B"/><rect x="1" y="18" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="19" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="20" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="21" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="22" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="23" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="24" width="18.05" height="1.05" fill="#221D1B"/></g></svg>
+            <span class="plus" aria-hidden="true"></span>
+            <b>Open slot</b>
+            <span>Sign up by Wed, Oct 28</span>
+          </div>
+          <div><h3>Slot 4</h3><p>Could be you</p></div>
+        </a>
+        <a class="person open" href="#present">
+          <div class="photo"><svg class="px" viewBox="0 0 20 25" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><g class="fig"><rect x="6" y="1" width="1.05" height="1.05" fill="#221D1B"/><rect x="9" y="1" width="1.05" height="1.05" fill="#221D1B"/><rect x="12" y="1" width="1.05" height="1.05" fill="#221D1B"/><rect x="5" y="2" width="10.05" height="1.05" fill="#221D1B"/><rect x="4" y="3" width="12.05" height="1.05" fill="#221D1B"/><rect x="4" y="4" width="12.05" height="1.05" fill="#221D1B"/><rect x="4" y="5" width="12.05" height="1.05" fill="#221D1B"/><rect x="4" y="6" width="5.05" height="1.05" fill="#221D1B"/><rect x="9" y="6" width="2.05" height="1.05" fill="#FF8A00"/><rect x="11" y="6" width="5.05" height="1.05" fill="#221D1B"/><rect x="5" y="7" width="3.05" height="1.05" fill="#221D1B"/><rect x="8" y="7" width="1.05" height="1.05" fill="#FF8A00"/><rect x="9" y="7" width="2.05" height="1.05" fill="#221D1B"/><rect x="11" y="7" width="1.05" height="1.05" fill="#FF8A00"/><rect x="12" y="7" width="3.05" height="1.05" fill="#221D1B"/><rect x="5" y="8" width="6.05" height="1.05" fill="#221D1B"/><rect x="11" y="8" width="1.05" height="1.05" fill="#FF8A00"/><rect x="12" y="8" width="3.05" height="1.05" fill="#221D1B"/><rect x="5" y="9" width="5.05" height="1.05" fill="#221D1B"/><rect x="10" y="9" width="1.05" height="1.05" fill="#FF8A00"/><rect x="11" y="9" width="4.05" height="1.05" fill="#221D1B"/><rect x="6" y="10" width="8.05" height="1.05" fill="#221D1B"/><rect x="6" y="11" width="4.05" height="1.05" fill="#221D1B"/><rect x="10" y="11" width="1.05" height="1.05" fill="#FF8A00"/><rect x="11" y="11" width="3.05" height="1.05" fill="#221D1B"/><rect x="6" y="12" width="8.05" height="1.05" fill="#221D1B"/><rect x="6" y="13" width="8.05" height="1.05" fill="#221D1B"/><rect x="7" y="14" width="6.05" height="1.05" fill="#221D1B"/><rect x="8" y="15" width="4.05" height="1.05" fill="#221D1B"/><rect x="3" y="16" width="14.05" height="1.05" fill="#221D1B"/><rect x="2" y="17" width="16.05" height="1.05" fill="#221D1B"/><rect x="1" y="18" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="19" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="20" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="21" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="22" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="23" width="18.05" height="1.05" fill="#221D1B"/><rect x="1" y="24" width="18.05" height="1.05" fill="#221D1B"/></g></svg>
+            <span class="plus" aria-hidden="true"></span>
+            <b>Open slot</b>
+            <span>Sign up by Wed, Oct 28</span>
+          </div>
+          <div><h3>Slot 5</h3><p>Could be you</p></div>
+        </a>
+      </div>
+
+      <p class="group"><span>Part 2</span>AI Tips &amp; Tricks</p>
+      <div class="host">
+        <div class="person">
+          <div class="photo"><svg class="px" viewBox="0 0 20 25" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="4" width="1" height="1" fill="#FF8A00" opacity=".7"/><rect x="17" y="9" width="1" height="1" fill="#FF8A00" opacity=".7"/><rect x="16" y="2" width="1" height="1" fill="#FF8A00" opacity=".7"/><g class="fig"><rect x="6" y="2" width="8.05" height="1.05" fill="#FF8A00"/><rect x="5" y="3" width="10.05" height="1.05" fill="#FF8A00"/><rect x="5" y="4" width="5.05" height="1.05" fill="#FF8A00"/><rect x="10" y="4" width="1.05" height="1.05" fill="#D96F00"/><rect x="11" y="4" width="4.05" height="1.05" fill="#FF8A00"/><rect x="4" y="5" width="13.05" height="1.05" fill="#D96F00"/><rect x="5" y="6" width="10.05" height="1.05" fill="#2A1B14"/><rect x="5" y="7" width="10.05" height="1.05" fill="#E3A97E"/><rect x="5" y="8" width="2.05" height="1.05" fill="#E3A97E"/><rect x="7" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="8" width="4.05" height="1.05" fill="#E3A97E"/><rect x="12" y="8" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="12" y="8" width="1.05" height="1.05" fill="#160A02"/><rect x="13" y="8" width="2.05" height="1.05" fill="#E3A97E"/><rect x="5" y="9" width="2.05" height="1.05" fill="#E3A97E"/><rect x="7" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="7" y="9" width="1.05" height="1.05" fill="#160A02"/><rect x="8" y="9" width="4.05" height="1.05" fill="#E3A97E"/><rect x="12" y="9" width="1.05" height="1.05" fill="#E3A97E"/><rect class="eye" x="12" y="9" width="1.05" height="1.05" fill="#160A02"/><rect x="13" y="9" width="2.05" height="1.05" fill="#E3A97E"/><rect x="6" y="10" width="8.05" height="1.05" fill="#E3A97E"/><rect x="6" y="11" width="1.05" height="1.05" fill="#E3A97E"/><rect x="7" y="11" width="2.05" height="1.05" fill="#C98A60"/><rect x="9" y="11" width="2.05" height="1.05" fill="#8A3A2A"/><rect x="11" y="11" width="2.05" height="1.05" fill="#C98A60"/><rect x="13" y="11" width="1.05" height="1.05" fill="#E3A97E"/><rect x="6" y="12" width="8.05" height="1.05" fill="#C98A60"/><rect x="7" y="13" width="6.05" height="1.05" fill="#C98A60"/><rect x="8" y="14" width="4.05" height="1.05" fill="#E3A97E"/><rect x="8" y="15" width="4.05" height="1.05" fill="#C98A60"/><rect x="3" y="16" width="5.05" height="1.05" fill="#3A3330"/><rect x="8" y="16" width="1.05" height="1.05" fill="#5A504B"/><rect x="9" y="16" width="2.05" height="1.05" fill="#E3A97E"/><rect x="11" y="16" width="1.05" height="1.05" fill="#5A504B"/><rect x="12" y="16" width="5.05" height="1.05" fill="#3A3330"/><rect x="2" y="17" width="16.05" height="1.05" fill="#3A3330"/><rect x="1" y="18" width="18.05" height="1.05" fill="#3A3330"/><rect x="1" y="19" width="7.05" height="1.05" fill="#3A3330"/><rect x="8" y="19" width="2.05" height="1.05" fill="#FF8A00"/><rect x="10" y="19" width="9.05" height="1.05" fill="#3A3330"/><rect x="1" y="20" width="6.05" height="1.05" fill="#3A3330"/><rect x="7" y="20" width="4.05" height="1.05" fill="#FF8A00"/><rect x="11" y="20" width="8.05" height="1.05" fill="#3A3330"/><rect x="1" y="21" width="7.05" height="1.05" fill="#3A3330"/><rect x="8" y="21" width="2.05" height="1.05" fill="#FF8A00"/><rect x="10" y="21" width="9.05" height="1.05" fill="#3A3330"/><rect x="1" y="22" width="18.05" height="1.05" fill="#3A3330"/><rect x="1" y="23" width="18.05" height="1.05" fill="#3A3330"/><rect x="1" y="24" width="18.05" height="1.05" fill="#3A3330"/></g></svg></div>
+        </div>
+        <div class="host-copy">
+          <h3>Fratz <span>and the R&amp;D team</span></h3>
+          <p>The R&amp;D team tries a lot of AI tools so the rest of us don't have to. Fratz walks through the tips, tricks and tools they'd recommend, and the ones they've dropped.</p>
+          <ul><li>Prompting habits</li><li>Debugging with AI</li><li>Reviewing AI-written code</li><li>Tools worth trying</li></ul>
+          <div class="extra">
+            <b>Plus: tricks for generating ad content</b>
+            <p>The R&amp;D team has been using AI to produce ad content and has picked up a lot along the way. Fratz shares how they prompt for visuals and copy, how they keep results on brand, and what didn't work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · SCHEDULE -->
+  <section class="sec" id="schedule">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="label">Schedule</span>
+          <h2>Friday, 3:00 to 5:00 PM</h2>
+        </div>
+        <p>Most of the time goes to live demos. The bars show when each part runs within the two hours.</p>
+      </div>
+      <ol class="rows">
+        <li class="row"><time>3:00 PM</time><h3>Doors open</h3><p>Grab a seat and get settled.</p>
+          <span class="dur"><span class="track"><span class="fill" style="--s:0;--d:10"></span></span>10 min</span></li>
+        <li class="row main"><time>3:10 PM</time><h3>Share My AI Setup</h3><p>James, Leigh, Mikoo, and the two teammates who sign up.</p>
+          <span class="dur"><span class="track"><span class="fill" style="--s:10;--d:50"></span></span>50 min</span></li>
+        <li class="row main"><time>4:00 PM</time><h3>AI Tips &amp; Tricks</h3><p>Fratz and the R&amp;D team on tips, tricks, tools, and generating ad content.</p>
+          <span class="dur"><span class="track"><span class="fill" style="--s:60;--d:40"></span></span>40 min</span></li>
+        <li class="row"><time>4:40 PM</time><h3>Open Q&amp;A</h3><p>Ask about anything you saw.</p>
+          <span class="dur"><span class="track"><span class="fill" style="--s:100;--d:20"></span></span>20 min</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5 · PRESENT CTA -->
+  <section class="share" id="present">
+    <span class="ghost" aria-hidden="true"></span>
+    <div class="wrap">
+      <div>
+        <h2>Want to present your setup?</h2>
+        <p class="intro">The program has five presenters. Three seniors are already confirmed, so there are <b>2 slots left</b>, first come, first served. Talk to your Lead and send us the tools you'd present.</p>
+        <div class="deadline"><span>Sign-up deadline</span><b>Wednesday, Oct 28</b><em id="left"></em></div>
+        <div class="actions">
+          <button class="btn btn-dark" id="copymsg" type="button">Copy a sign-up message for your Lead</button>
+        </div>
+        <p class="toast" id="toast" aria-live="polite"></p>
+      </div>
+      <ol class="steps">
+        <li><div><h3>Tell your Lead</h3><p>Say you'd like to present and what you'd show.</p></div></li>
+        <li><div><h3>List the tools you use</h3><p>Editor, models, extensions, agents. We use this to make sure two people aren't presenting the same setup.</p></div></li>
+        <li><div><h3>Your Lead sends it by Wednesday</h3><p>Sign-ups close at the end of the day on Wednesday, Oct 28.</p></div></li>
+        <li><div><h3>We confirm the last two</h3><p>First come, first served. If your setup overlaps with someone already in the lineup, we'll let you know.</p></div></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brandblock">
+        <img src="data:image/webp;base64,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" alt="NTV360">
+        <p>Share My AI Setup and AI Tips &amp; Tricks, hosted by the NTV360 Development Team PH. Feel free to pass this page around.</p>
+      </div>
+      <div>
+        <h4>Details</h4>
+        <dl>
+          <dt>Date</dt><dd>Friday, October 30, 2026</dd>
+          <dt>Time</dt><dd>3:00 – 5:00 PM (PHT)</dd>
+          <dt>Venue</dt><dd>NTV360 Office, room TBA</dd>
+          <dt>Sign-ups</dt><dd>Through your Lead, by Wed, Oct 28</dd>
+        </dl>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <ul>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#lineup">Lineup</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#present">Present (2 slots left)</a></li>
+          <li><a class="gcal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/">Add to Google Calendar ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base"><span>© 2026 NTV360 Development Team PH</span><a href="#top">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* calendar links */
+  var q = new URLSearchParams({
+    action:'TEMPLATE',
+    text:'Share My AI Setup + AI Tips & Tricks',
+    dates:'20261030T070000Z/20261030T090000Z',
+    details:'In-person session hosted by the NTV360 Development Team PH. James, Leigh and Mikoo share their AI setups; Fratz and the R&D team share tips, tricks and tools.',
+    location:'NTV360 Office'
+  });
+  document.querySelectorAll('.gcal').forEach(function(a){ a.href = 'https://calendar.google.com/calendar/render?' + q.toString(); });
+
+  /* days left until the sign-up deadline */
+  var DEADLINE = new Date('2026-10-28T23:59:59+08:00');
+  var left = document.getElementById('left'), now = new Date();
+  if (now > DEADLINE) left.textContent = 'Sign-ups closed';
+  else {
+    var days = Math.floor((DEADLINE - now)/86400000);
+    left.textContent = days < 1 ? 'Last day' : days + (days === 1 ? ' day left' : ' days left');
+  }
+
+  /* copy a sign-up message for your Lead */
+  var msg = "Hi! I'd like to present at Share My AI Setup on Friday, Oct 30.\n\nTools I use:\n- Editor / IDE: \n- AI assistants and models: \n- Extensions, agents or MCP servers: \n- Other: \n\nWhat I'd show: \n\nCould you send this to the organizers before the Wednesday (Oct 28) deadline? Thanks!";
+  var toast = document.getElementById('toast');
+  function done(){ toast.textContent = 'Copied. Fill in your tools and send it to your Lead.'; }
+  function fallback(){
+    var ta = document.createElement('textarea'); ta.value = msg; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+    var ok = false; try{ ok = document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+    if (ok) done(); else toast.textContent = msg;
+  }
+  document.getElementById('copymsg').addEventListener('click', function(){
+    try{ navigator.clipboard.writeText(msg).then(done, fallback); }catch(e){ fallback(); }
+  });
+
+})();
+</script>
+
+</body></html>
